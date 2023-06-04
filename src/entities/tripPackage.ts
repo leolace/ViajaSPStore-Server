@@ -1,6 +1,13 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm"
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn
+} from "typeorm"
 import City from "@entity/city"
 import Accommodation from "./accommodation"
+import Category from "./category"
 
 @Entity("tripPackages")
 class TripPackage {
@@ -16,8 +23,15 @@ class TripPackage {
   @Column({ type: "varchar", length: 100 })
   transport: string
 
-  @ManyToOne(() => Accommodation, (accommodation) => accommodation.tripPackages)
+  @ManyToOne(
+    () => Accommodation,
+    (accommodation) => accommodation.tripPackages,
+    { nullable: true }
+  )
   accommodation: Accommodation
+
+  @ManyToMany(() => Category, (category) => category.tripPackages)
+  categories: Category[]
 
   @Column({ type: "date" })
   departureDate: Date

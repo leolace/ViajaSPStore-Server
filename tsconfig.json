@@ -19,7 +19,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@entity/*": ["src/entities/*"],
-      "@controller/*": ["src/controllers/*"]
+      "@controller/*": ["src/controllers/*"],
+      "@helper/*": ["src/helpers/*"]
     }
   },
   "exclude": ["node_modules", "dist"],

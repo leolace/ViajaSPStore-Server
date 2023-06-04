@@ -17,8 +17,11 @@ class Customer {
   @Column({ type: "varchar", length: 11, unique: true })
   cpf: string
 
-  @Column({ type: "varchar", length: 100 })
+  @Column({ type: "varchar", length: 100, nullable: true })
   address: string
+
+  @Column({ type: "boolean", default: false })
+  verified: boolean
 }
 
 export default Customer

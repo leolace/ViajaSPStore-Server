@@ -1,6 +1,13 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn
+} from "typeorm"
 import TripPackage from "./tripPackage"
 import Accommodation from "./accommodation"
+import Category from "./category"
 
 @Entity("cities")
 class City {
@@ -24,6 +31,9 @@ class City {
 
   @OneToMany(() => City, (city) => city.accommodations)
   accommodations: Accommodation[]
+
+  @ManyToMany(() => Category, (category) => category.cities)
+  categories: Category[]
 }
 
 export default City
