@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity("customers")
-class customer {
+class Customer {
   @PrimaryGeneratedColumn("uuid")
   id: string
 
@@ -21,4 +21,4 @@ class customer {
   address: string
 }
 
-export default customer
+export default Customer
