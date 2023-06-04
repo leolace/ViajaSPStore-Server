@@ -8,12 +8,12 @@
 - password
 - cpf
 - address
-- shoppingCart
 
 ## trip_package
 
 - id
 - cityId
+- price
 - transport
 - accommodationId
 - departureDate
@@ -34,3 +34,9 @@
 - address
 - attractions
 - sobre
+
+## sale
+
+- id
+- tripPackageId
+- salePrice
