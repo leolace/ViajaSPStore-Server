@@ -17,5 +17,11 @@ RUN npm run build
 #expose the port
 EXPOSE 3000
 
+ENV DB_NAME=🙈
+ENV DB_USERNAME=🙈
+ENV DB_HOST=🙈
+ENV DB_PASS=🙈
+ENV DB_PORT=5432
+
 # command to run when intantiate an image
 CMD ["npm","start"]
