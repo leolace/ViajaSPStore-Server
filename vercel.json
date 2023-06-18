@@ -12,5 +12,9 @@
       "src": "/(.*)",
       "dest": "dist/index.js"
     }
-  ]
+  ],
+  "buildCommand": "pnpm build",
+  "framework": "express",
+  "installCommand": "pnpm install",
+  "outputDirectory": "./dist"
 }
