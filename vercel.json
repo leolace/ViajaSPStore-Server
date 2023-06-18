@@ -4,7 +4,10 @@
     {
       "src": "dist/index.js",
       "use": "@vercel/node",
-      "config": { "includeFiles": ["dist/**"] }
+      "config": { "includeFiles": ["dist/**"] },
+      "buildCommand": "pnpm build",
+      "installCommand": "pnpm install",
+      "outputDirectory": "./dist"
     }
   ],
   "routes": [
@@ -12,8 +15,5 @@
       "src": "/(.*)",
       "dest": "dist/index.js"
     }
-  ],
-  "buildCommand": "pnpm build",
-  "installCommand": "pnpm install",
-  "outputDirectory": "./dist"
+  ]
 }
