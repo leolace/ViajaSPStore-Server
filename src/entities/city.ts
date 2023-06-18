@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn
@@ -29,10 +30,8 @@ class City {
   @OneToMany(() => City, (city) => city.tripPackages)
   tripPackages: TripPackage[]
 
-  @OneToMany(() => City, (city) => city.accommodations)
-  accommodations: Accommodation[]
-
   @ManyToMany(() => Category, (category) => category.cities)
+  @JoinColumn({ name: "category_id", referencedColumnName: "id" })
   categories: Category[]
 }
 

@@ -16,7 +16,7 @@ class Accommodation {
   @Column({ type: "varchar", length: 100 })
   name: string
 
-  @ManyToOne(() => City, (city) => city.accommodations)
+  @ManyToOne(() => City, (city) => city.id)
   city: City
 
   @Column({ type: "int" })
