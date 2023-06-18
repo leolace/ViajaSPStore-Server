@@ -14,7 +14,6 @@
     }
   ],
   "buildCommand": "pnpm build",
-  "framework": "express",
   "installCommand": "pnpm install",
   "outputDirectory": "./dist"
 }
