@@ -27,6 +27,7 @@ router.post("/category", categoryController.store)
 router.get("/city", cityController.index)
 router.get("/city/:id", cityController.show)
 router.post("/city", cityController.store)
+router.put("/city/:id", cityController.update)
 
 // ACCOMMODATION
 router.get("/accommodation", accommodationController.index)

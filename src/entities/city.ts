@@ -21,16 +21,25 @@ class City {
   @Column({ type: "char", length: 2, default: "SP" })
   state: string
 
-  @Column({ type: "varchar" })
+  @Column({ type: "varchar", array: true, nullable: true })
   attractions: string[]
 
   @Column({ type: "text" })
   about: string
 
-  @OneToMany(() => City, (city) => city.tripPackages)
+  @Column({ type: "text", nullable: true, array: true })
+  images: string[]
+
+  @OneToMany(() => TripPackage, (tripPackage) => tripPackage.city, {
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE"
+  })
   tripPackages: TripPackage[]
 
-  @ManyToMany(() => Category, (category) => category.cities)
+  @ManyToMany(() => Category, (category) => category.cities, {
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE"
+  })
   @JoinColumn({ name: "category_id", referencedColumnName: "id" })
   categories: Category[]
 }

@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "dev": "ts-node-dev --transpile-only --respawn --quiet -r tsconfig-paths/register ./src/index.ts",
     "build": "tsc --project tsconfig.json && tscpaths -p  tsconfig.json -s ./src -o ./dist",

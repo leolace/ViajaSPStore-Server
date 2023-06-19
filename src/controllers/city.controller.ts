@@ -13,7 +13,10 @@ class CityController {
   async show(req: Request, res: Response) {
     const { id } = req.params
 
-    const city = await cityRepository.findOne({ where: { id } })
+    const city = await cityRepository.findOne({
+      where: { id },
+      relations: ["categories", "tripPackages"]
+    })
 
     if (!city) {
       return res.status(404).json({ error: "Cidade não encontrada" })
@@ -23,7 +26,8 @@ class CityController {
   }
 
   async store(req: Request, res: Response) {
-    const { name, state, attractions, about, categories_id } = req.body
+    const { name, state, attractions, about, categories_id, imagesUrl } =
+      req.body
 
     const categories = await categoryRepository.find({
       where: { id: Any(categories_id) }
@@ -34,12 +38,51 @@ class CityController {
       state,
       attractions,
       about,
-      categories
+      categories,
+      images: imagesUrl.length > 0 ? imagesUrl : []
     })
 
     await cityRepository.save(city)
 
     return res.json(city)
+  }
+
+  async update(req: Request, res: Response) {
+    const { id } = req.params
+    const { name, state, attractions, about, categories_id, imagesUrl } =
+      req.body
+
+    const categories = await categoryRepository.find({
+      where: { id: Any(categories_id) }
+    })
+
+    const city = await cityRepository.findOne({
+      where: { id },
+      relations: ["categories", "tripPackages"]
+    })
+
+    if (!city) {
+      return res.status(404).json({ error: "Cidade não encontrada" })
+    }
+
+    const data = {
+      ...city,
+      name: name || city.name,
+      state: state || city.state,
+      attractions: attractions || city.attractions,
+      about: about || city.about,
+      categories: categories.length > 0 ? categories : city.categories,
+      images: imagesUrl.length > 0 ? imagesUrl : city.images
+    }
+
+    const updatedCity = await cityRepository.preload({ ...data, id })
+
+    if (!updatedCity)
+      return res.status(404).json({ error: "Cidade não encontrada" })
+
+    cityRepository.save(updatedCity)
+
+    return res.json(updatedCity)
   }
 }
 
