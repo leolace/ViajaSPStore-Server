@@ -3,7 +3,7 @@ import { Request, Response } from "express"
 
 class CategoryController {
   async index(req: Request, res: Response) {
-    const categories = categoryRepository.find()
+    const categories = await categoryRepository.find()
 
     return res.json(categories)
   }
