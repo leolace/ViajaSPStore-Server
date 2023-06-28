@@ -56,6 +56,8 @@ class CityController {
       where: { id: Any(categories_id) }
     })
 
+    console.log(categories)
+
     const city = await cityRepository.findOne({
       where: { id },
       relations: ["categories", "tripPackages"]
@@ -72,7 +74,7 @@ class CityController {
       attractions: attractions || city.attractions,
       about: about || city.about,
       categories: categories.length > 0 ? categories : city.categories,
-      images: imagesUrl.length > 0 ? imagesUrl : city.images
+      images: imagesUrl || city.images
     }
 
     const updatedCity = await cityRepository.preload({ ...data, id })
