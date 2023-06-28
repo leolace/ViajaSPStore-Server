@@ -52,13 +52,13 @@ class AuthController {
   }
 
   async verify(req: Request, res: Response) {
-    const { id, token } = req.params
+    const { id, token } = req.query
 
     if (!id || !token) {
       return res.status(400).send("Dados insuficientes para verificar o email")
     }
 
-    const customer = await customerRepository.findOneBy({ id })
+    const customer = await customerRepository.findOneBy({ id: id as string })
 
     if (!customer) {
       return res
@@ -72,7 +72,10 @@ class AuthController {
         .sendFile(path.join(__dirname + "/../../public/emailVerified.html"))
     }
 
-    const auth = await authRepository.findOneBy({ userId: id, token })
+    const auth = await authRepository.findOneBy({
+      userId: id as string,
+      token: token as string
+    })
 
     if (!auth) {
       return res.status(404).send("Não foi possível verificar o email")
@@ -81,9 +84,7 @@ class AuthController {
     await customerRepository.update(customer.id, { verified: true })
     await authRepository.delete(auth.userId)
 
-    return res
-      .status(200)
-      .sendFile(path.join(__dirname + "/../../public/emailVerified.html"))
+    return res.sendStatus(200)
   }
 }
 

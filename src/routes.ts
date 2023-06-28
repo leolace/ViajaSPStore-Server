@@ -12,7 +12,7 @@ const router = Router()
 // AUTH
 router.post("/auth", authController.auth)
 router.get("/auth", authController.me)
-router.get("/auth/:id/:token", authController.verify)
+router.get("/auth/verify", authController.verify)
 
 // CUSTOMER
 router.get("/customer", customerController.index)
