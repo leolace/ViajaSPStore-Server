@@ -22,21 +22,20 @@ class CustomerController {
   }
 
   async store(req: Request, res: Response) {
-    const { name, email, password, cpf } = req.body
+    const { name, email, password } = req.body
 
     const customerExists = await customerRepository.findOne({
-      where: [{ email }, { cpf }]
+      where: { email }
     })
 
     if (customerExists) {
-      return res.status(409).json({ error: "Usuário já cadastrado" })
+      return res.status(409).json({ error: "E-mail já cadastrado" })
     }
 
     const customer = customerRepository.create({
       name,
       email,
-      password,
-      cpf
+      password
     })
 
     await customerRepository.save(customer)
@@ -52,9 +51,9 @@ class CustomerController {
 
     await authRepository.save(auth)
 
-    const fullUrl = req.protocol + "://" + req.get("host")
+    const clientURL = process.env.CLIENT_URL as string
 
-    await sendEmail(customer.email, fullUrl, token, customer.id)
+    await sendEmail(customer.email, clientURL, token, customer.id)
 
     return res.status(201).json({ token })
   }

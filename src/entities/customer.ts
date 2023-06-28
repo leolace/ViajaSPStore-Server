@@ -14,7 +14,7 @@ class Customer {
   @Column({ type: "text" })
   password: string
 
-  @Column({ type: "varchar", length: 11, unique: true })
+  @Column({ type: "varchar", length: 11, unique: true, nullable: true })
   cpf: string
 
   @Column({ type: "varchar", length: 100, nullable: true })
