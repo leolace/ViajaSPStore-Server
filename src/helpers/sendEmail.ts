@@ -11,7 +11,7 @@ export async function sendEmail(
   <div style="padding-bottom: 2rem;">
     <h1 style="background-color: #014AAD; color: #fff; width: auto; text-align: center; padding: 0.5rem 1rem; font-size: 2.5rem; border-radius: 0.5rem;">ViajaSP</h1>
     <h2>Clique no botão abaixo para confirmar seu e-mail</h2>
-    <a style="padding: 0.5rem 1rem; background-color: #F8BC00; color: #014AAD; border-radius: 0.5rem; text-decoration: none; font-weight: 600; margin-top: 2rem;"  href="${url}/auth/${customerId}/${token}">CONFIRMAR E-MAIL</a>
+    <a style="padding: 0.5rem 1rem; background-color: #F8BC00; color: #014AAD; border-radius: 0.5rem; text-decoration: none; font-weight: 600; margin-top: 2rem;"  href="${url}/auth?userId=${customerId}&token=${token}">CONFIRMAR E-MAIL</a>
   </div>
     `
 
