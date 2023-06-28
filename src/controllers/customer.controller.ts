@@ -11,7 +11,7 @@ class CustomerController {
     let customers
 
     if (email) {
-      customers = await customerRepository.find({
+      customers = await customerRepository.findOne({
         where: { email: String(email) }
       })
     } else {
