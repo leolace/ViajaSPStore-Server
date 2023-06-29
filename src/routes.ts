@@ -13,6 +13,7 @@ const router = Router()
 router.post("/auth", authController.auth)
 router.get("/auth", authController.me)
 router.get("/auth/verify", authController.verify)
+router.post("/auth/verify", authController.sendVerifyEmail)
 
 // CUSTOMER
 router.get("/customer", customerController.index)
