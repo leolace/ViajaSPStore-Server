@@ -22,13 +22,13 @@ export async function sendEmail(
       port: 587,
       secure: true,
       auth: {
-        user: "lgonsalez02@gmail.com",
-        pass: "tlab gsfp dwrl ygzj"
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
       }
     })
 
     await transporter.sendMail({
-      from: "lgonsalez02@gmail.com",
+      from: process.env.EMAIL_USER,
       to,
       subject: "Confirmação de Email - ViajaSP",
       html
