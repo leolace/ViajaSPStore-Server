@@ -4,6 +4,7 @@ import { Request, Response } from "express"
 import path from "path"
 import jwt from "jsonwebtoken"
 import sendEmail from "@/helpers/sendEmail"
+import { json } from "stream/consumers"
 
 class AuthController {
   async auth(req: Request, res: Response) {
@@ -91,21 +92,19 @@ class AuthController {
     const { id, token } = req.query
 
     if (!id || !token) {
-      return res.status(400).send("Dados insuficientes para verificar o email")
+      return res
+        .status(400)
+        .json({ error: "Dados insuficientes para verificar o email" })
     }
 
     const customer = await customerRepository.findOneBy({ id: id as string })
 
     if (!customer) {
-      return res
-        .status(404)
-        .send("Não foi possível encontrar o usuário para verificar o email")
+      return res.status(404).json({ error: "Usuário não encontrado" })
     }
 
     if (customer.verified) {
-      return res
-        .status(404)
-        .sendFile(path.join(__dirname + "/../../public/emailVerified.html"))
+      return res.status(409).json({ error: "E-mail já verificado" })
     }
 
     const auth = await authRepository.findOneBy({
