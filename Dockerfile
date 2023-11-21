@@ -17,11 +17,13 @@ RUN npm run build
 #expose the port
 EXPOSE 3000
 
-ENV DB_NAME=🙈
-ENV DB_USERNAME=🙈
-ENV DB_HOST=🙈
-ENV DB_PASS=🙈
+ENV DB_NAME=xnxtxoxi
+ENV DB_USERNAME=xnxtxoxi
+ENV DB_HOST=silly.db.elephantsql.com
+ENV DB_PASS=NPlJ3UewAoODg_1CRyHbJC-cRHM-NAN7
 ENV DB_PORT=5432
+
+ENV JWT_SECRET=ISA21l3002
 
 # command to run when intantiate an image
 CMD ["npm","start"]

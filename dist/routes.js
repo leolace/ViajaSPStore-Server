@@ -1,0 +1,35 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+require("express-async-errors");
+const customer_controller_1 = __importDefault(require("./controllers/customer.controller"));
+const auth_controller_1 = __importDefault(require("./controllers/auth.controller"));
+const category_controller_1 = __importDefault(require("./controllers/category.controller"));
+const city_controller_1 = __importDefault(require("./controllers/city.controller"));
+const accommodation_controller_1 = __importDefault(require("./controllers/accommodation.controller"));
+const tripPackage_controller_1 = __importDefault(require("./controllers/tripPackage.controller"));
+const router = (0, express_1.Router)();
+router.post("/auth", auth_controller_1.default.auth);
+router.get("/auth", auth_controller_1.default.me);
+router.get("/auth/verify", auth_controller_1.default.verify);
+router.post("/auth/verify", auth_controller_1.default.sendVerifyEmail);
+router.get("/customer", customer_controller_1.default.index);
+router.post("/customer", customer_controller_1.default.store);
+router.get("/category", category_controller_1.default.index);
+router.get("/category/:id", category_controller_1.default.show);
+router.post("/category", category_controller_1.default.store);
+router.get("/city", city_controller_1.default.index);
+router.get("/city/:id", city_controller_1.default.show);
+router.post("/city", city_controller_1.default.store);
+router.put("/city/:id", city_controller_1.default.update);
+router.get("/accommodation", accommodation_controller_1.default.index);
+router.get("/accommodation/:id", accommodation_controller_1.default.show);
+router.post("/accommodation", accommodation_controller_1.default.store);
+router.get("/trip-package", tripPackage_controller_1.default.index);
+router.get("/trip-package/:id", tripPackage_controller_1.default.show);
+router.post("/trip-package", tripPackage_controller_1.default.store);
+exports.default = router;
+//# sourceMappingURL=routes.js.map
